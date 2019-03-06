@@ -1,7 +1,3 @@
 json.array! @products.each do |product|
-  json.id product.id
-  json.name product.name
-  json.description product.description
-  json.price product.price.to_i
-  json.image_url product.image_url
+  json.partial! "product.json.jbuilder", product: product 
 end

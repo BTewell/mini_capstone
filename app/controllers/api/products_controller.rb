@@ -34,10 +34,10 @@ class Api::ProductsController < ApplicationController
   def update
     the_id = params[:id]
     @product = Product.find_by(id: the_id)
-    @product.name = params[:name]
-    @product.description = params[:description]
-    @product.price = params[:price]
-    @product.image_url = params[:image_url]
+    @product.name = params[:name] || @product.name
+    @product.description = params[:description] || @product.description
+    @product.price = params[:price] || @product.price
+    @product.image_url = params[:image_url] || @product.image_url
     @product.save
     render 'show.json.jbuilder'
   end
