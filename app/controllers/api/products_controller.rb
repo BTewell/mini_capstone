@@ -1,14 +1,4 @@
 class Api::ProductsController < ApplicationController
-
-  # def single_method
-  #   @product = Product.first
-  #   render 'one_product.json.jbuilder'
-  # end
-  # def all_method
-  #   @products = Product.all
-  #   render 'all_products.json.jbuilder'
-  # end
-
   def index
     if params[:search]
       @products = Product.where("name iLIKE ?", "%#{params[:search]}%")
@@ -37,7 +27,6 @@ class Api::ProductsController < ApplicationController
       name: params[:name],
       description: params[:description],
       price: params[:price],
-      image_url: params[:image_url],
       in_stock: params[:in_stock]
       )
     if @product.save
@@ -53,7 +42,6 @@ class Api::ProductsController < ApplicationController
     @product.name = params[:name] || @product.name
     @product.description = params[:description] || @product.description
     @product.price = params[:price] || @product.price
-    @product.image_url = params[:image_url] || @product.image_url
     @product.in_stock = params[:in_stock] || @product.in_stock
     if @product.save
       render 'show.json.jbuilder'

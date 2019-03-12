@@ -1,0 +1,1 @@
+json.message "This supplier has been removed from the database."
