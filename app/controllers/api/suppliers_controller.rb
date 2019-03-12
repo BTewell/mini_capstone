@@ -5,11 +5,7 @@ class Api::SuppliersController < ApplicationController
     else
       @suppliers = Supplier.all
     end
-
-    if params[:discount] == "true"
-      @suppliers = @suppliers.where("price < ?", 25)
-    end
-
+    
     if params[:sort] && params[:sort_order]
       @suppliers = @suppliers.order(params[:sort] => params[:sort_order])
     end
