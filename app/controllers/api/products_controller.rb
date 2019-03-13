@@ -27,7 +27,8 @@ class Api::ProductsController < ApplicationController
       name: params[:name],
       description: params[:description],
       price: params[:price],
-      in_stock: params[:in_stock]
+      in_stock: params[:in_stock],
+      supplier_id: params[:supplier_id],
       )
     if @product.save
       render 'show.json.jbuilder'
