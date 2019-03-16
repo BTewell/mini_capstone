@@ -1,4 +1,6 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, except: [:index, :show]
+
   def index
     if params[:search]
       @products = Product.where("name iLIKE ?", "%#{params[:search]}%")
@@ -22,6 +24,7 @@ class Api::ProductsController < ApplicationController
     render 'show.json.jbuilder'
   end
 
+  #only admins
   def create
     @product = Product.new(
       name: params[:name],
@@ -37,6 +40,7 @@ class Api::ProductsController < ApplicationController
     end
   end
 
+  #only admin
   def update
     the_id = params[:id]
     @product = Product.find_by(id: the_id)
@@ -51,6 +55,7 @@ class Api::ProductsController < ApplicationController
     end  
   end
 
+  #only admin
   def destroy
     the_id = params[:id]
     @product = Product.find_by(id: the_id)
