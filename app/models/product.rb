@@ -6,13 +6,11 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :description, length: {in: 10..500}
   belongs_to :supplier
-  has_many :orders
   has_many :images
   has_many :category_products
   has_many :categories, through: :category_products
   has_many :carted_products
-  has_many :users, through: :carted_products
-  has_many :products, through: :carted_products
+  has_many :orders, through: :carted_products
   # def supplier
   #   Supplier.find_by(id: supplier_id)
   # end
