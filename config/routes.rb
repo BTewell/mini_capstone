@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   #   get 'one_product' => 'products#single_method'
   #   get 'all_products' => 'products#all_method'
   # end
+  get '/products' => 'products#index'
+  get '/products/new' => 'products#new'
+  get '/products/:id' => 'products#show'
 
   namespace :api do
     get '/products' => 'products#index'
