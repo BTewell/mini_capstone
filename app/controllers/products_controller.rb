@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @suppliers = Supplier.all
     render 'new.html.erb'
   end
 
@@ -18,11 +19,9 @@ class ProductsController < ApplicationController
       name: params[:name],
       description: params[:description],
       price: params[:price],
-      image_url: params[:image_url],
-      supplier_id: params[:supplier_id],  
-      user_id: 1
+      supplier_id: params[:supplier_id]  
     ) 
-    @product.save
-    redirect_to "/products/#{recipe.id}"
+    @product.save!
+    redirect_to "/products/#{@product.id}"
   end
 end
